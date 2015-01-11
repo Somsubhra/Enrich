@@ -1,2 +1,2 @@
 #!/bin/sh
-python src/main.py
+python src/main.py $1
