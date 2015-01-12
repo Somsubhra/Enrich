@@ -41,14 +41,7 @@ class TxtDump:
             for file_name in file_names:
 
                 in_file = path.join(dir_path, file_name)
-                out_file = path.join(self.out_dir, dir_path, file_name + ".txt")
-                output_dir = path.join(self.out_dir, dir_path)
-
-                # Create the output directory path
-                try:
-                    stat(output_dir)
-                except:
-                    makedirs(output_dir)
+                out_file = path.join(self.out_dir, file_name + '_' + dir_path.replace('/', '_') + '.txt')
 
                 TxtDump.extract_text(in_file, out_file)
 
