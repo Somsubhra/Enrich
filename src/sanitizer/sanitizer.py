@@ -2,30 +2,29 @@
 __author__ = 'Somsubhra Bairi'
 __email__ = 'somsubhra.bairi@gmail.com'
 
-
 # All imports
 from logger import Logger
 
+from re import split
 from os import walk, path, stat, mkdir, makedirs
-from subprocess import call
 
 
-# The text dumping class
-class TxtDump:
+# The text sanitizer class
+class Sanitizer:
 
-    # Constructor for the text dumping class
+    # Constructor for the sanitizer
     def __init__(self, in_dir, out_dir):
         self.in_dir = in_dir
         self.out_dir = out_dir
 
-    # Dump the text
-    def dump(self):
+    # Run the sanitizing process
+    def run(self):
 
         # Check for the input directory
         try:
             stat(self.in_dir)
         except:
-            Logger.log_error('Corpus not found')
+            Logger.log_error('Input text not found')
             return
 
         # Create the output directory
@@ -34,14 +33,14 @@ class TxtDump:
         except:
             makedirs(self.out_dir)
 
-        Logger.log_message('Started text dumping')
+        Logger.log_message('Started text sanitizing')
 
         # Walk through the input directory
         for(dir_path, _, file_names) in walk(self.in_dir):
             for file_name in file_names:
 
                 in_file = path.join(dir_path, file_name)
-                out_file = path.join(self.out_dir, dir_path, file_name + ".txt")
+                out_file = path.join(self.out_dir, dir_path, file_name)
                 output_dir = path.join(self.out_dir, dir_path)
 
                 # Create the output directory path
@@ -50,11 +49,20 @@ class TxtDump:
                 except:
                     makedirs(output_dir)
 
-                TxtDump.extract_text(in_file, out_file)
+                Sanitizer.sanitize(in_file, out_file)
 
-        Logger.log_success('Finished dumping text')
+        Logger.log_success('Finished sanitizing text')
 
-    # Extract the text
+
+    # Sanitize the file
     @staticmethod
-    def extract_text(in_file, out_file):
-        call(['pdftotext', in_file, out_file])
+    def sanitize(in_file, out_file):
+        input_file = open(in_file, 'r')
+        output_file = open(out_file, 'a')
+
+        for input_line in input_file.readlines():
+            output_line = ' '.join([w for w in split('\W', input_line) if w])
+            output_file.write(output_line + '\n')
+
+        input_file.close()
+        output_file.close()

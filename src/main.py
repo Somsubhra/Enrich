@@ -7,8 +7,10 @@ __email__ = 'somsubhra.bairi@gmail.com'
 from webapp import WebApp
 from txtdump import TxtDump
 from logger import Logger
+from sanitizer import Sanitizer
 
 import sys
+from os import path
 
 # Constant declarations
 DEBUG = True
@@ -29,8 +31,13 @@ def main():
         return
 
     elif args[1] == 'txtdump':
-        txt_dump = TxtDump('corpus', 'tmp')
+        txt_dump = TxtDump('corpus', path.join('tmp', 'txtdump'))
         txt_dump.dump()
+        return
+
+    elif args[1] == 'sanitize':
+        sanitizer = Sanitizer(path.join('tmp', 'txtdump'), path.join('tmp', 'sanitized'))
+        sanitizer.run()
         return
 
     else:
