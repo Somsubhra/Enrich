@@ -4,14 +4,16 @@ __email__ = 'somsubhra.bairi@gmail.com'
 
 
 # All imports
-from flask import Flask
+from logger import Logger
 
+from flask import Flask
 
 # The Web App class
 class WebApp:
 
     # Constructor for the Web App class
     def __init__(self, host, port, debug):
+
         self.host = host
         self.port = port
         self.debug = debug
@@ -19,9 +21,11 @@ class WebApp:
         self.app = Flask(__name__)
 
         # Index route
-        @self.app.route("/")
+        @self.app.route('/')
         def index():
-            return "Enrich"
+            return 'Enrich'
+
+        Logger.log_success('Server started successfully')
 
     # Run the Web App
     def run(self):

@@ -4,6 +4,8 @@ __email__ = 'somsubhra.bairi@gmail.com'
 
 
 # All imports
+from logger import Logger
+
 from os import walk, path, stat, mkdir, makedirs
 from subprocess import call
 
@@ -18,10 +20,14 @@ class TxtDump:
 
     # Dump the text
     def dump(self):
+
+        Logger.log_message('Initializing text dumper')
+
         # Check for the input directory
         try:
             stat(self.in_dir)
         except:
+            Logger.log_error('Corpus not found')
             return
 
         # Create the output directory
@@ -29,6 +35,8 @@ class TxtDump:
             stat(self.out_dir)
         except:
             mkdir(self.out_dir)
+
+        Logger.log_message('Started text dumping')
 
         # Walk through the input directory
         for(dir_path, _, file_names) in walk(self.in_dir):
@@ -45,6 +53,8 @@ class TxtDump:
                     makedirs(output_dir)
 
                 TxtDump.extract_text(in_file, out_file)
+
+        Logger.log_success('Finished dumping text')
 
     # Extract the text
     @staticmethod
