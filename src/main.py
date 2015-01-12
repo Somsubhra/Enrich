@@ -22,7 +22,7 @@ def main():
         return
 
     if args[1] == 'runserver':
-        web_app = WebApp("127.0.0.1", 5000, DEBUG)
+        web_app = WebApp('127.0.0.1', 5000, DEBUG)
         web_app.run()
 
     elif args[1] == 'txtdump':
@@ -30,6 +30,12 @@ def main():
         txt_dump.dump()
 
     else:
+        txt_dump = TxtDump('corpus', 'tmp')
+        txt_dump.dump()
+
+        web_app = WebApp('127.0.0.1', 5000, DEBUG)
+        web_app.run()
+        
         return
 
 
