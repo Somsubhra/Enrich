@@ -19,7 +19,7 @@ class Logger:
     # Log message
     @staticmethod
     def log_message(msg):
-        print '\033[94m' + '--' + msg + '\033[0m'
+        print '\033[94m' + '-- ' + msg + '\033[0m'
 
     # Log usage
     @staticmethod

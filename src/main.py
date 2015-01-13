@@ -8,6 +8,7 @@ from webapp import WebApp
 from txtdump import TxtDump
 from logger import Logger
 from sanitizer import Sanitizer
+from stemmer import Stemmer
 
 import sys
 from os import path
@@ -22,7 +23,13 @@ def main():
     args = sys.argv
 
     if len(args) < 2:
-        Logger.log_usage('\n./run runserver\n./run txtdump')
+        usage = '''
+        ./run txtdump
+        ./run sanitize
+        ./run stem
+        ./run runserver
+        '''
+        Logger.log_usage(usage)
         return
 
     if args[1] == 'runserver':
@@ -38,6 +45,11 @@ def main():
     elif args[1] == 'sanitize':
         sanitizer = Sanitizer(path.join('tmp', 'txtdump'), path.join('tmp', 'sanitized'))
         sanitizer.run()
+        return
+
+    elif args[1] == 'stem':
+        stemmer = Stemmer(path.join('tmp', 'sanitized'), path.join('tmp', 'stemmed'))
+        stemmer.run()
         return
 
     else:
