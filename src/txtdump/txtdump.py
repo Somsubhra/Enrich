@@ -19,7 +19,7 @@ class TxtDump:
         self.out_dir = out_dir
 
     # Dump the text
-    def dump(self):
+    def run(self):
 
         # Check for the input directory
         try:

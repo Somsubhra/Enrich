@@ -32,7 +32,7 @@ def main():
 
     elif args[1] == 'txtdump':
         txt_dump = TxtDump('corpus', path.join('tmp', 'txtdump'))
-        txt_dump.dump()
+        txt_dump.run()
         return
 
     elif args[1] == 'sanitize':
