@@ -6,7 +6,7 @@ __email__ = 'somsubhra.bairi@gmail.com'
 from logger import Logger
 
 from re import split
-from os import walk, path, stat, mkdir, makedirs
+from os import walk, path, stat, makedirs
 
 
 # The text sanitizer class

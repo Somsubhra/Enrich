@@ -7,7 +7,7 @@ __email__ = 'somsubhra.bairi@gmail.com'
 from logger import Logger
 
 from nltk import PorterStemmer
-from os import walk, path, stat, mkdir, makedirs
+from os import walk, path, stat, makedirs
 
 
 # The stemmer class
