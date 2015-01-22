@@ -9,6 +9,7 @@ from txtdump import TxtDump
 from logger import Logger
 from sanitizer import Sanitizer
 from stemmer import Stemmer
+from tf import TermFrequency
 
 import sys
 from os import path
@@ -27,6 +28,7 @@ def main():
         ./run txtdump
         ./run sanitize
         ./run stem
+        ./run tf
         ./run runserver
         '''
         Logger.log_usage(usage)
@@ -50,6 +52,13 @@ def main():
     elif args[1] == 'stem':
         stemmer = Stemmer(path.join('tmp', 'sanitized'), path.join('tmp', 'stemmed'))
         stemmer.run()
+        return
+
+    elif args[1] == 'tf':
+        tf = TermFrequency(path.join('tmp', 'stemmed'), path.join('data', 'term_frequencies_stemmed.csv'))
+        tf.run()
+        tf = TermFrequency(path.join('tmp', 'sanitized'), path.join('data', 'term_frequencies_sanitized.csv'))
+        tf.run()
         return
 
     else:

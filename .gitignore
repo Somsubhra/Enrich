@@ -6,3 +6,5 @@ tmp/
 corpus/train/
 corpus/test/
 build/
+data/term_frequencies_sanitized.csv
+data/term_frequencies_stemmed.csv

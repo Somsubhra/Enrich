@@ -7,6 +7,7 @@ __email__ = 'somsubhra.bairi@gmail.com'
 from logger import Logger
 
 from os import walk, path, stat
+import sqlite3
 
 
 # The term frequency counter class
@@ -60,4 +61,9 @@ class TermFrequency:
 
     # Dump the results
     def dump_results(self):
-        pass
+        output_file = open(self.out_file, 'w')
+
+        for term in self.frequencies:
+            output_file.write(term + ";" + str(self.frequencies[term]) + "\n")
+
+        output_file.close()
