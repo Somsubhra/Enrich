@@ -54,7 +54,7 @@ class Sanitizer:
         Logger.log_message('Sanitizing ' + in_file)
 
         input_file = open(in_file, 'r')
-        output_file = open(out_file, 'a')
+        output_file = open(out_file, 'w')
 
         for input_line in input_file.readlines():
             output_line = ' '.join([word for word in split('\W', input_line) if word])

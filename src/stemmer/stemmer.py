@@ -53,7 +53,7 @@ class Stemmer:
         Logger.log_message('Stemming ' + in_file)
 
         input_file = open(in_file, 'r')
-        output_file = open(out_file, 'a')
+        output_file = open(out_file, 'w')
 
         for line in input_file.readlines():
             output_line = ' '.join([PorterStemmer().stem_word(word) for word in line.split()])
