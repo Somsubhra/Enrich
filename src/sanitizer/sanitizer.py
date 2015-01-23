@@ -57,7 +57,7 @@ class Sanitizer:
         output_file = open(out_file, 'w')
 
         for input_line in input_file.readlines():
-            output_line = ' '.join([word for word in split('\W', input_line) if word])
+            output_line = ' '.join([word.lower() for word in split('\W', input_line) if word])
             output_file.write(output_line + '\n')
 
         input_file.close()
