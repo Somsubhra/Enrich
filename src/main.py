@@ -10,6 +10,7 @@ from logger import Logger
 from sanitizer import Sanitizer
 from stemmer import Stemmer
 from tf import TermFrequency
+from tficf import TFICF
 
 import sys
 from os import path
@@ -55,11 +56,17 @@ def main():
         return
 
     elif args[1] == 'tf':
-        tf = TermFrequency(path.join('tmp', 'stemmed'), path.join('data', 'term_frequencies_stemmed.csv'))
+        tf = TermFrequency(path.join('tmp', 'stemmed'), path.join('data', 'tf_stemmed.csv'))
         tf.run()
-        tf = TermFrequency(path.join('tmp', 'sanitized'), path.join('data', 'term_frequencies_sanitized.csv'))
+        tf = TermFrequency(path.join('tmp', 'sanitized'), path.join('data', 'tf_sanitized.csv'))
         tf.run()
         return
+
+    elif args[1] == 'tficf':
+        tficf = TFICF(path.join('tmp', 'stemmed'), path.join('data', 'tficf_stemmed.csv'))
+        tficf.run()
+        tficf = TFICF(path.join('tmp', 'sanitized'), path.join('data', 'tficf_sanitized.csv'))
+        tficf.run()
 
     else:
         Logger.log_usage('\n./run runserver\n./run txtdump')

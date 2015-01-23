@@ -7,7 +7,6 @@ __email__ = 'somsubhra.bairi@gmail.com'
 from logger import Logger
 
 from os import walk, path, stat
-import sqlite3
 
 
 # The term frequency counter class
