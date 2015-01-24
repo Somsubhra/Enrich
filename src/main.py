@@ -11,6 +11,7 @@ from sanitizer import Sanitizer
 from stemmer import Stemmer
 from tf import TermFrequency
 from tficf import TFICF
+from psycholinguistic_db import PsycholinguisticDbCreator
 
 import sys
 from os import path
@@ -31,6 +32,7 @@ def main():
         ./run stem
         ./run tf
         ./run runserver
+        ./run createdict
         '''
         Logger.log_usage(usage)
         return
@@ -67,6 +69,13 @@ def main():
         tficf.run()
         tficf = TFICF(path.join('tmp', 'sanitized'), path.join('data', 'tficf_sanitized.csv'))
         tficf.run()
+        return
+
+    elif args[1] == 'createdict':
+        dict_creator = PsycholinguisticDbCreator(path.join('data', 'psycholinguistic_db'),
+                                                 path.join('data', 'psycholinguistic_db.csv'))
+        dict_creator.create()
+        return
 
     else:
         Logger.log_usage('\n./run runserver\n./run txtdump')
