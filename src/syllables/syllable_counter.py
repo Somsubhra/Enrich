@@ -11,7 +11,16 @@ class SyllableCounter:
         self.in_dir = in_dir
         self.out_file = out_file
         self.dict_file = dict_file
+        self.syllable_val = {}
 
     # Run the syllable counter
     def run(self):
-        pass
+
+        # Build up the syllable count dictionary
+        dictionary = open(self.dict_file, 'r')
+
+        for line in dictionary.readlines():
+            cols = line.split(';')
+            self.syllable_val[cols[2]] = cols[0]
+
+        dictionary.close()
