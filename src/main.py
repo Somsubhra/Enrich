@@ -28,18 +28,19 @@ def main():
 
     if len(args) < 2:
         usage = '''
-        ./run txtdump
-        ./run sanitize
-        ./run stem
-        ./run tf
-        ./run runserver
-        ./run createdict
-        ./run kff
+        ./run txtdump\t<Gives the text dump of corpus>
+        ./run sanitize\t<Sanitize the text dump to remove white spaces, etc.>
+        ./run stem\t<Stem the sanitized text>
+        ./run tf\t<Calculate the raw term frequency>
+        ./run tficf\t<Calculate the term frequency - inverse chapter frequency>
+        ./run dict\t<Create the psycholinguistic dictionary>
+        ./run kff\t<Calculate the Kucera Francis frequency>
+        ./run server\t<Run the application server>
         '''
         Logger.log_usage(usage)
         return
 
-    if args[1] == 'runserver':
+    if args[1] == 'server':
         web_app = WebApp('127.0.0.1', 5000, DEBUG)
         web_app.run()
         return
@@ -73,7 +74,7 @@ def main():
         tficf.run()
         return
 
-    elif args[1] == 'createdict':
+    elif args[1] == 'dict':
         dict_creator = PsycholinguisticDbCreator(path.join('data', 'psycholinguistic_db'),
                                                  path.join('data', 'psycholinguistic_db.csv'))
         dict_creator.create()
