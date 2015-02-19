@@ -12,6 +12,7 @@ from stemmer import Stemmer
 from tf import TermFrequency
 from tficf import TFICF
 from psycholinguistic_db import PsycholinguisticDbCreator
+from kucera_francis import KFFrequency
 
 import sys
 from os import path
@@ -33,6 +34,7 @@ def main():
         ./run tf
         ./run runserver
         ./run createdict
+        ./run kff
         '''
         Logger.log_usage(usage)
         return
@@ -76,6 +78,12 @@ def main():
                                                  path.join('data', 'psycholinguistic_db.csv'))
         dict_creator.create()
         return
+
+    elif args[1] == 'kff':
+        kf_freq_counter = KFFrequency(path.join('tmp', 'stemmed'),
+                                      path.join('data', 'kff_stemmed.csv'),
+                                      path.join('data', 'psycholinguistic_db.csv'))
+        kf_freq_counter.run()
 
     else:
         Logger.log_usage('\n./run runserver\n./run txtdump')
