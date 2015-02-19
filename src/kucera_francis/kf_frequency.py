@@ -5,6 +5,7 @@ __email__ = 'somsubhra.bairi@gmail.com'
 
 # All imports
 from logger import Logger
+
 from os import walk, path, stat
 
 
@@ -17,6 +18,7 @@ class KFFrequency:
         self.out_file = out_file
         self.dict_file = dict_file
         self.kf_val = {}
+        self.kf_res = {}
 
     # Run the Kucera Francis frequency calculator
     def run(self):
@@ -28,7 +30,7 @@ class KFFrequency:
 
         for line in dictionary.readlines():
             cols = line.split(';')
-            self.kf_val[cols[2]] = cols[1]
+            self.kf_val[cols[0]] = cols[1]
 
         dictionary.close()
 
@@ -61,10 +63,17 @@ class KFFrequency:
 
         for line in input_file.readlines():
             for word in line.split():
-                pass
-
-        pass
+                if word in self.kf_val:
+                    # If word is present in the psycholinguistic dictionary
+                    self.kf_res[word] = self.kf_val[word]
+                else:
+                    self.kf_res[word] = 0
 
     # Dump the results to output file
     def dump_results(self):
-        pass
+        output_file = open(self.out_file, 'w')
+
+        for word in self.kf_res:
+            output_file.write(word + ";" + str(self.kf_res[word]) + "\n")
+
+        output_file.close()
