@@ -11,6 +11,8 @@ __email__ = 'somsubhra.bairi@gmail.com'
 # All imports
 from logger import Logger
 
+from nltk import PorterStemmer
+
 
 # The psycholinguistic database creator
 class PsycholinguisticDbCreator:
@@ -19,6 +21,8 @@ class PsycholinguisticDbCreator:
     def __init__(self, in_file, out_file):
         self.in_file = in_file
         self.out_file = out_file
+        self.kf_frequencies = {}
+        self.syllables = {}
 
     # Create the database
     def create(self):
@@ -28,7 +32,28 @@ class PsycholinguisticDbCreator:
         output_file = open(self.out_file, 'w')
 
         for line in input_file.readlines():
-            output_file.write(';'.join(word.lower() for word in line.split()) + '\n')
+            items = line.split()
+            word = PorterStemmer().stem_word(items[2].lower())
+            kff = items[1]
+            syl = items[0]
+
+            if word in self.kf_frequencies:
+                # Select the stemmed word with the maximum KF Frequency
+                if kff > self.kf_frequencies[word]:
+                    self.kf_frequencies[word] = kff
+            else:
+                self.kf_frequencies[word] = kff
+
+            if word in self.syllables:
+                # Select the stemmed word with minimum number of syllables
+                if syl < self.syllables[word]:
+                    self.syllables[word] = syl
+            else:
+                self.syllables[word] = syl
+
+        # Dump the contents to the output file
+        for word in self.kf_frequencies:
+            output_file.write(word + ";" + self.kf_frequencies[word] + ";" + self.syllables[word] + "\n")
 
         input_file.close()
         output_file.close()
