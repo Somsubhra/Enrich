@@ -6,7 +6,8 @@ __email__ = 'somsubhra.bairi@gmail.com'
 # All imports
 from logger import Logger
 
-from flask import Flask
+from flask import Flask, render_template, request
+
 
 # The Web App class
 class WebApp:
@@ -23,7 +24,14 @@ class WebApp:
         # Index route
         @self.app.route('/')
         def index():
-            return 'Enrich'
+            return render_template('index.html')
+
+        @self.app.route('/api/tag', methods=['GET', 'POST'])
+        def api():
+            if request.method == 'POST':
+                return '[]'
+            else:
+                return 'POST /api/tag'
 
         Logger.log_success('Server started successfully')
 

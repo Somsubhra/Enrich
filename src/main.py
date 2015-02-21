@@ -26,17 +26,19 @@ def main():
 
     args = sys.argv
 
+    usage = '''
+            ./run txtdump\t<Gives the text dump of corpus>
+            ./run sanitize\t<Sanitize the text dump to remove white spaces, etc.>
+            ./run stem\t<Stem the sanitized text>
+            ./run tf\t<Calculate the raw term frequency>
+            ./run tficf\t<Calculate the term frequency - inverse chapter frequency>
+            ./run dict\t<Create the psycholinguistic dictionary>
+            ./run kff\t<Calculate the Kucera Francis frequency>
+            ./run server\t<Run the application server>
+            '''
+
     if len(args) < 2:
-        usage = '''
-        ./run txtdump\t<Gives the text dump of corpus>
-        ./run sanitize\t<Sanitize the text dump to remove white spaces, etc.>
-        ./run stem\t<Stem the sanitized text>
-        ./run tf\t<Calculate the raw term frequency>
-        ./run tficf\t<Calculate the term frequency - inverse chapter frequency>
-        ./run dict\t<Create the psycholinguistic dictionary>
-        ./run kff\t<Calculate the Kucera Francis frequency>
-        ./run server\t<Run the application server>
-        '''
+
         Logger.log_usage(usage)
         return
 
@@ -87,7 +89,7 @@ def main():
         kf_freq_counter.run()
 
     else:
-        Logger.log_usage('\n./run runserver\n./run txtdump')
+        Logger.log_usage(usage)
         return
 
 

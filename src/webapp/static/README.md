@@ -1,0 +1,2 @@
+Arcadia web static files
+======

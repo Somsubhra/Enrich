@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>
+        Enrich
+    </title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-tags"></span>&nbsp&nbspEnrich</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <textarea id="txt-inp" class="form-control" placeholder="Enter the text you want to enrich here" rows="15"></textarea>
+            </div>
+            <div class="form-group">
+                <button id="enrich-btn" class="btn btn-primary">Enrich Text</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" id="result"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/static/jquery/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#enrich-btn").click(function() {
+            var txt = $("#txt-inp").val();
+
+            $.post('/api/tag',
+                    {
+                        "text": txt
+                    }, function(data) {
+                        if(data.success) {
+                            $("#result").html("<div class='well'>" + data.result + "</div>");
+                        } else {
+                            $("#result").html("<div class='alert alert-danger'>" +
+                                    "<span class='glyphicon glyphicon-exclamation-sign'></span>" +
+                                    " Some error occurred!</div>");
+                        }
+                    }, "json");
+        });
+    });
+</script>
+</body>
+</html>
