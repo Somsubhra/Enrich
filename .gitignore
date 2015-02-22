@@ -10,3 +10,4 @@ data/tf_sanitized.csv
 data/tf_stemmed.csv
 data/psycholinguistic_db.csv
 data/kff_stemmed.csv
+data/syllables_stemmed.csv

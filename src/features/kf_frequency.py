@@ -30,7 +30,7 @@ class KFFrequency:
 
         for line in dictionary.readlines():
             cols = line.split(';')
-            self.kf_val[cols[0]] = cols[1]
+            self.kf_val[cols[0]] = int(cols[1])
 
         dictionary.close()
 

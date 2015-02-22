@@ -14,6 +14,7 @@ from corpus import Stemmer
 from features import TermFrequency
 from features import TFICF
 from features import KFFrequency
+from features import SyllableCounter
 from extras import Logger
 from extras import PsycholinguisticDbCreator
 
@@ -35,6 +36,7 @@ def main():
             ./run tficf\t\t<Calculate the term frequency - inverse chapter frequency>
             ./run dict\t\t<Create the psycholinguistic dictionary>
             ./run kff\t\t<Calculate the Kucera Francis frequency>
+            ./run syl\t\t<Calculate the number of syllables>
             ./run server\t<Run the application server>
             '''
 
@@ -88,6 +90,14 @@ def main():
                                       path.join('data', 'kff_stemmed.csv'),
                                       path.join('data', 'psycholinguistic_db.csv'))
         kf_freq_counter.run()
+        return
+
+    elif args[1] == 'syl':
+        syllable_counter = SyllableCounter(path.join('tmp', 'stemmed'),
+                                           path.join('data', 'syllables_stemmed.csv'),
+                                           path.join('data', 'psycholinguistic_db.csv'))
+        syllable_counter.run()
+        return
 
     else:
         Logger.log_usage(usage)
