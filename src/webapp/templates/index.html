@@ -20,6 +20,13 @@
                 <textarea id="txt-inp" class="form-control" placeholder="Enter the text you want to enrich here" rows="15"></textarea>
             </div>
             <div class="form-group">
+                <label>Select Classifier</label>
+                <select class="form-control" id="type-inp">
+                    <option value="kff">Kucera Francis Frequency</option>
+                    <option value="tf">Raw Term Frequency</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <button id="enrich-btn" class="btn btn-primary">Enrich Text</button>
             </div>
         </div>
@@ -34,10 +41,12 @@
     $(document).ready(function() {
         $("#enrich-btn").click(function() {
             var txt = $("#txt-inp").val();
+            var type = $("#type-inp").val();
 
             $.getJSON('/api/tag',
                     {
-                        text: txt
+                        text: txt,
+                        type: type
                     }, function(data) {
                         if(data.success) {
                             $("#result").html("<div class='well'>" + data.result + "</div>");

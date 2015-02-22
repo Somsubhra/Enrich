@@ -30,7 +30,11 @@ class WebApp:
         @self.app.route('/api/tag')
         def tag_api():
             text = request.args["text"]
-            result = Tagger().tag(text)
+            _type = request.args["type"]
+
+            tagger = Tagger(_type)
+            result = tagger.tag(text)
+
             return jsonify(success=True, result=result)
 
         Logger.log_success('Server started successfully')

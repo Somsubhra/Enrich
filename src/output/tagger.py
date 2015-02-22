@@ -13,16 +13,23 @@ from classifiers import KFFClassifier
 class Tagger:
 
     # Constructor for the Tagger
-    def __init__(self):
-        self.kff_classifier = KFFClassifier(path.join('data', 'kff_stemmed.csv'))
+    def __init__(self, _type):
+        self.classifier = None
+
+        if _type == "kff":
+            self.classifier = KFFClassifier(path.join('data', 'kff_stemmed.csv'))
 
     # Tag the text
     def tag(self, text):
+
+        if self.classifier is None:
+            return ""
+
         result = ""
         words = text.split()
         for word in words:
 
-            if self.kff_classifier.is_difficult(word):
+            if self.classifier.is_difficult(word):
                 result += "<a href='#'>" + word + "</a>" + " "
             else:
                 result += word + " "
