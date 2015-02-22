@@ -27,7 +27,7 @@ class WebApp:
         def index():
             return render_template('index.html')
 
-        @self.app.route('/api/tag', methods=['GET', 'POST'])
+        @self.app.route('/api/tag')
         def tag_api():
             text = request.args["text"]
             result = Tagger.tag(text)

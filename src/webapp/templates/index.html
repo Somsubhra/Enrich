@@ -35,9 +35,9 @@
         $("#enrich-btn").click(function() {
             var txt = $("#txt-inp").val();
 
-            $.post('/api/tag',
+            $.getJSON('/api/tag',
                     {
-                        "text": txt
+                        text: txt
                     }, function(data) {
                         if(data.success) {
                             $("#result").html("<div class='well'>" + data.result + "</div>");
@@ -46,7 +46,7 @@
                                     "<span class='glyphicon glyphicon-exclamation-sign'></span>" +
                                     " Some error occurred!</div>");
                         }
-                    }, "json");
+                    });
         });
     });
 </script>
