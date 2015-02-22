@@ -4,18 +4,19 @@ __email__ = 'somsubhra.bairi@gmail.com'
 
 
 # All imports
-from webapp import WebApp
-from txtdump import TxtDump
-from logger import Logger
-from sanitizer import Sanitizer
-from stemmer import Stemmer
-from tf import TermFrequency
-from tficf import TFICF
-from psycholinguistic_db import PsycholinguisticDbCreator
-from kucera_francis import KFFrequency
-
 import sys
 from os import path
+
+from webapp import WebApp
+from corpus import TxtDump
+from corpus import Sanitizer
+from corpus import Stemmer
+from features import TermFrequency
+from features import TFICF
+from features import KFFrequency
+from extras import Logger
+from extras import PsycholinguisticDbCreator
+
 
 # Constant declarations
 DEBUG = True
@@ -29,11 +30,11 @@ def main():
     usage = '''
             ./run txtdump\t<Gives the text dump of corpus>
             ./run sanitize\t<Sanitize the text dump to remove white spaces, etc.>
-            ./run stem\t<Stem the sanitized text>
-            ./run tf\t<Calculate the raw term frequency>
-            ./run tficf\t<Calculate the term frequency - inverse chapter frequency>
-            ./run dict\t<Create the psycholinguistic dictionary>
-            ./run kff\t<Calculate the Kucera Francis frequency>
+            ./run stem\t\t<Stem the sanitized text>
+            ./run tf\t\t<Calculate the raw term frequency>
+            ./run tficf\t\t<Calculate the term frequency - inverse chapter frequency>
+            ./run dict\t\t<Create the psycholinguistic dictionary>
+            ./run kff\t\t<Calculate the Kucera Francis frequency>
             ./run server\t<Run the application server>
             '''
 

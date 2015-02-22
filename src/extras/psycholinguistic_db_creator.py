@@ -9,9 +9,9 @@ __email__ = 'somsubhra.bairi@gmail.com'
 
 
 # All imports
-from logger import Logger
-
 from nltk import PorterStemmer
+
+from extras import Logger
 
 
 # The psycholinguistic database creator

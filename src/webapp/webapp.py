@@ -4,10 +4,11 @@ __email__ = 'somsubhra.bairi@gmail.com'
 
 
 # All imports
-from logger import Logger
-from tagger import Tagger
-
 from flask import Flask, render_template, request, jsonify
+
+from extras import Logger
+from output import Tagger
+
 
 
 # The Web App class

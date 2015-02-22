@@ -4,9 +4,9 @@ __email__ = 'somsubhra.bairi@gmail.com'
 
 
 # All imports
-from logger import Logger
-
 from os import walk, path, stat
+
+from extras import Logger
 
 
 # The Kucera Francis frequency class
