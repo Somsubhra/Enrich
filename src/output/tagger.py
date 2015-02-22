@@ -3,7 +3,10 @@ __author__ = 'Somsubhra Bairi'
 __email__ = 'somsubhra.bairi@gmail.com'
 
 # All imports
+from os import path
+
 from nltk import PorterStemmer
+from classifiers import KFFClassifier
 
 
 # Tags the text
@@ -11,21 +14,17 @@ class Tagger:
 
     # Constructor for the Tagger
     def __init__(self):
-        pass
+        self.kff_classifier = KFFClassifier(path.join('data', 'kff_stemmed.csv'))
 
     # Tag the text
-    @staticmethod
-    def tag(text):
+    def tag(self, text):
         result = ""
         words = text.split()
         for word in words:
 
-            # Strip the special characters
-            sanitized_word = ''.join(e for e in word if e.isalnum())
-
-            # Stem the word
-            stemmed_word = PorterStemmer().stem_word(sanitized_word)
-
-            result += stemmed_word + " "
+            if self.kff_classifier.is_difficult(word):
+                result += "<a href='#'>" + word + "</a>" + " "
+            else:
+                result += word + " "
 
         return result

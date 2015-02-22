@@ -10,7 +10,6 @@ from extras import Logger
 from output import Tagger
 
 
-
 # The Web App class
 class WebApp:
 
@@ -31,7 +30,7 @@ class WebApp:
         @self.app.route('/api/tag')
         def tag_api():
             text = request.args["text"]
-            result = Tagger.tag(text)
+            result = Tagger().tag(text)
             return jsonify(success=True, result=result)
 
         Logger.log_success('Server started successfully')
