@@ -61,6 +61,10 @@ class SyllableCounter:
 
         for line in input_file.readlines():
             for word in line.split():
+
+                if word.isdigit():
+                    continue
+
                 if word in self.syllable_val:
                     # If word is present in psycholinguistic dictionary
                     self.syllable_res[word] = self.syllable_val[word]

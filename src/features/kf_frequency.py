@@ -63,6 +63,10 @@ class KFFrequency:
 
         for line in input_file.readlines():
             for word in line.split():
+
+                if word.isdigit():
+                    continue
+
                 if word in self.kf_val:
                     # If word is present in the psycholinguistic dictionary
                     self.kf_res[word] = self.kf_val[word]

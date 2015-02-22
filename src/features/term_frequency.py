@@ -51,6 +51,10 @@ class TermFrequency:
 
         for line in input_file.readlines():
             for word in line.split():
+
+                if word.isdigit():
+                    continue
+
                 if self.frequencies.has_key(word):
                     self.frequencies[word] += 1
                 else:

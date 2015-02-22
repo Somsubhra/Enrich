@@ -26,6 +26,9 @@ class KFFClassifier:
 
     # Classify the word
     def is_difficult(self, word):
+        if word.isdigit():
+            return False
+
         sanitized_word = ''.join(e for e in word if e.isalnum()).lower()
         stemmed_word = PorterStemmer().stem_word(sanitized_word)
 
