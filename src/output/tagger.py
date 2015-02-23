@@ -8,7 +8,8 @@ from os import path
 from nltk import PorterStemmer
 from classifiers import KFFClassifier
 from classifiers import TFClassifier
-
+from classifiers import DFClassifier
+from classifiers import ITFIDFClassifier
 
 # Tags the text
 class Tagger:
@@ -21,10 +22,10 @@ class Tagger:
             self.classifier = KFFClassifier(path.join('data', 'kff_stemmed.csv'))
         elif _type == "tf":
             self.classifier = TFClassifier(path.join('data', 'tf_stemmed.csv'))
-        elif _type == "tficf":
-            pass
-        elif _type == "entropy":
-            pass
+        elif _type == "df":
+            self.classifier = DFClassifier(path.join('data', 'df_stemmed.csv'))
+        elif _type == "itfidf":
+            self.classifier = ITFIDFClassifier(path.join('data', 'itfidf_stemmed.csv'))
         elif _type == "syllables":
             pass
 

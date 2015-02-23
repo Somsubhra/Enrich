@@ -13,6 +13,7 @@ from corpus import Sanitizer
 from corpus import Stemmer
 from features import TermFrequency
 from features import DocumentFrequency
+from features import ITFIDF
 from features import KFFrequency
 from features import SyllableCounter
 from extras import Logger
@@ -34,6 +35,7 @@ def main():
             ./run stem\t\t<Stem the sanitized text>
             ./run tf\t\t<Calculate the raw term frequency>
             ./run df\t\t<Calculate the document frequency>
+            ./run itfidf\t<Calculate the inverse term frequency - inverse document frequency>
             ./run dict\t\t<Create the psycholinguistic dictionary>
             ./run kff\t\t<Calculate the Kucera Francis frequency>
             ./run syl\t\t<Calculate the number of syllables>
@@ -74,6 +76,14 @@ def main():
         df = DocumentFrequency(path.join('tmp', 'stemmed'), path.join('data', 'df_stemmed.csv'),
                                path.join('data', 'tf_stemmed.csv'))
         df.run()
+        return
+
+    elif args[1] == 'itfidf':
+        itfidf = ITFIDF(path.join('data', 'itfidf_stemmed.csv'),
+                        path.join('data', 'tf_stemmed.csv'),
+                        path.join('data', 'df_stemmed.csv'))
+        itfidf.run()
+        return
 
     elif args[1] == 'dict':
         dict_creator = PsycholinguisticDbCreator(path.join('data', 'psycholinguistic_db'),
