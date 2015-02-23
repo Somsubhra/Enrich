@@ -12,7 +12,6 @@ from corpus import TxtDump
 from corpus import Sanitizer
 from corpus import Stemmer
 from features import TermFrequency
-from features import TFICF
 from features import KFFrequency
 from features import SyllableCounter
 from extras import Logger
@@ -33,7 +32,6 @@ def main():
             ./run sanitize\t<Sanitize the text dump to remove white spaces, etc.>
             ./run stem\t\t<Stem the sanitized text>
             ./run tf\t\t<Calculate the raw term frequency>
-            ./run tficf\t\t<Calculate the term frequency - inverse chapter frequency>
             ./run dict\t\t<Create the psycholinguistic dictionary>
             ./run kff\t\t<Calculate the Kucera Francis frequency>
             ./run syl\t\t<Calculate the number of syllables>
@@ -70,13 +68,6 @@ def main():
         tf.run()
         tf = TermFrequency(path.join('tmp', 'sanitized'), path.join('data', 'tf_sanitized.csv'))
         tf.run()
-        return
-
-    elif args[1] == 'tficf':
-        tficf = TFICF(path.join('tmp', 'stemmed'), path.join('data', 'tficf_stemmed.csv'))
-        tficf.run()
-        tficf = TFICF(path.join('tmp', 'sanitized'), path.join('data', 'tficf_sanitized.csv'))
-        tficf.run()
         return
 
     elif args[1] == 'dict':

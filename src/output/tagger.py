@@ -7,6 +7,7 @@ from os import path
 
 from nltk import PorterStemmer
 from classifiers import KFFClassifier
+from classifiers import TFClassifier
 
 
 # Tags the text
@@ -18,6 +19,15 @@ class Tagger:
 
         if _type == "kff":
             self.classifier = KFFClassifier(path.join('data', 'kff_stemmed.csv'))
+        elif _type == "tf":
+            self.classifier = TFClassifier(path.join('data', 'tf_stemmed.csv'))
+        elif _type == "tficf":
+            pass
+        elif _type == "entropy":
+            pass
+        elif _type == "syllables":
+            pass
+
 
     # Tag the text
     def tag(self, text):
