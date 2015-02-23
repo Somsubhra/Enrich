@@ -6,7 +6,7 @@ tmp/
 corpus/train/
 corpus/test/
 build/
-data/tf_sanitized.csv
+data/df_stemmed.csv
 data/tf_stemmed.csv
 data/psycholinguistic_db.csv
 data/kff_stemmed.csv

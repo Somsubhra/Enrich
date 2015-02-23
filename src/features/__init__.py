@@ -7,3 +7,4 @@ __email__ = 'somsubhra.bairi@gmail.com'
 from kf_frequency import KFFrequency
 from syllable_counter import SyllableCounter
 from term_frequency import TermFrequency
+from document_frequency import DocumentFrequency
