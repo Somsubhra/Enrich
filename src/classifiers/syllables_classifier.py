@@ -8,24 +8,24 @@ from extras import Logger
 from nltk import PorterStemmer
 
 
-# Classify according to ITFIDF
-class ITFIDFClassifier:
+# Classify according to number of syllables
+class SyllablesClassifier:
 
-    # Constructor for the ITFIDFClassifier
+    # Constructor for the SyllablesClassifier
     def __init__(self, dict_file):
         dictionary_file = open(dict_file)
 
-        self.itfidf_dictionary = {}
+        self.syllables = {}
 
-        self.avg_itfidf = 0
+        self.avg_syl = 0
 
-        # Construct the document frequency dictionary
+        # Construct the syllables dictionary
         for line in dictionary_file.readlines():
             cols = line.split(";")
-            self.itfidf_dictionary[cols[0]] = int(cols[1])
-            self.avg_itfidf += int(cols[1])
+            self.syllables[cols[0]] = int(cols[1])
+            self.avg_syl += int(cols[1])
 
-        self.avg_itfidf /= len(self.itfidf_dictionary)
+        self.avg_syl /= len(self.syllables)
 
         dictionary_file.close()
 
@@ -37,7 +37,7 @@ class ITFIDFClassifier:
         sanitized_word = ''.join(e for e in word if e.isalnum()).lower()
         stemmed_word = PorterStemmer().stem_word(sanitized_word)
 
-        if stemmed_word in self.itfidf_dictionary:
-            return self.itfidf_dictionary[stemmed_word] > self.avg_itfidf / 16
+        if stemmed_word in self.syllables:
+            return self.syllables[stemmed_word] > 2
         else:
             return True

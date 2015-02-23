@@ -10,6 +10,7 @@ from classifiers import KFFClassifier
 from classifiers import TFClassifier
 from classifiers import DFClassifier
 from classifiers import ITFIDFClassifier
+from classifiers import SyllablesClassifier
 
 # Tags the text
 class Tagger:
@@ -27,8 +28,7 @@ class Tagger:
         elif _type == "itfidf":
             self.classifier = ITFIDFClassifier(path.join('data', 'itfidf_stemmed.csv'))
         elif _type == "syllables":
-            pass
-
+            self.classifier = SyllablesClassifier(path.join('data', 'syllables_stemmed.csv'))
 
     # Tag the text
     def tag(self, text):
