@@ -38,6 +38,6 @@ class ITFIDFClassifier:
         stemmed_word = PorterStemmer().stem_word(sanitized_word)
 
         if stemmed_word in self.itfidf_dictionary:
-            return self.itfidf_dictionary[stemmed_word] > self.avg_itfidf * 1
+            return self.itfidf_dictionary[stemmed_word] > self.avg_itfidf / 16
         else:
             return True
