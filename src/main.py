@@ -71,7 +71,7 @@ def main():
         tf = TermFrequency(path.join('tmp', 'stemmed'), path.join('data', 'tf_stemmed.csv'))
         tf.run()
 
-        tf = TermFrequency(path.join('tmp', 'sanitized'), path.join('data', 'tf_sanitized.csv'))
+        tf = TermFrequency(path.join('tmp', 'sanitized'), path.join('data', 'terms_list.csv'))
         tf.run()
 
         return
