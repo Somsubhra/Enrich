@@ -8,6 +8,7 @@ corpus/test/
 build/
 data/df_stemmed.csv
 data/tf_stemmed.csv
+data/tf_sanitized.csv
 data/psycholinguistic_db.csv
 data/kff_stemmed.csv
 data/syllables_stemmed.csv
