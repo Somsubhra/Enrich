@@ -74,7 +74,10 @@ class DocumentFrequency:
         for word in self.document_words:
             # If word present in document
             if self.document_words[word]:
-                self.document_frequencies[word] += 1
+                if word in self.document_frequencies:
+                    self.document_frequencies[word] += 1
+                else:
+                    self.document_frequencies[word] = 1
 
     # Dump the results in the output file
     def dump_results(self):

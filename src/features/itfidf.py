@@ -45,7 +45,9 @@ class ITFIDF:
         max_df = max(self.df_dictionary.values())
 
         for word in self.df_dictionary:
-            self.itfidf[word] = (max_tf * max_df) / (self.tf_dictionary[word] * self.df_dictionary[word])
+            if word in self.tf_dictionary:
+                if word in self.df_dictionary:
+                    self.itfidf[word] = (max_tf * max_df) / (self.tf_dictionary[word] * self.df_dictionary[word])
 
         Logger.log_message("Writing results to " + self.out_file)
         self.dump_results()

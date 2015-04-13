@@ -41,7 +41,7 @@ class Tagger:
         for word in words:
 
             if self.classifier.is_difficult(word):
-                result += "<a href='#'>" + word + "</a>" + " "
+                result += "[" + word + "]" + " "
             else:
                 result += word + " "
 
